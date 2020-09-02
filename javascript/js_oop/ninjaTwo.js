@@ -19,10 +19,44 @@ function Ninja(name, health = 100) {
 
     this.drinkSake = function () {
         this.health += 10;
+        console.log(`${this.name} drank some sake and gained 10 health`)
         return this
     }
+
+    this.punch = function (target) {
+        if (!(target instanceof Ninja )) {
+            console.log(`${this.name} did not punch anything`);
+        }
+        else {
+            target.health = target.health - 5;
+            console.log(`${target.name} was punched by ${this.name} and lost 5 health`)
+        }
+    }
+
+    this.kick = function (target) {
+        if (!(target instanceof Ninja )) {
+            console.log(`${this.name} did not kick anything`);
+        }
+        else {
+            target.health = target.health - 15;
+            console.log(`${target.name} was kicked by ${this.name} and lost 15 health`)
+        }
+    }
+
 }
 
 
 ninja1 = new Ninja("Naruto")
-ninja1.sayName().showStats().drinkSake().showStats()
+
+ninja2 = new Ninja("Sasuke")
+
+var ninja3
+
+console.log("==============================================================")
+
+ninja1.punch(ninja2)
+ninja2.showStats()
+
+console.log("==============================================================")
+
+ninja2.punch(ninja3)
