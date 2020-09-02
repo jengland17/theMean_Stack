@@ -39,7 +39,7 @@ function Ninja(name, health = 100) {
         }
         else {
             target.health = target.health - 15;
-            console.log(`${target.name} was kicked by ${this.name} and lost 15 health`)
+            console.log(`${target.name} was kicked by ${this.name} and lost 15 health`) 
         }
     }
 
