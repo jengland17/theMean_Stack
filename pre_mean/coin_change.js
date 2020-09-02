@@ -1,35 +1,58 @@
 function make_change(num) {
 
-    var quarter = 0;
-    var dime = 0;
-    var nickel = 0;
-    var penny = 0;
+    let wallet = { 'dollar': 0, 'quarter': 0, 'dime': 0, 'nickel': 0, 'penny': 0 }
 
     while (num > 0) {
+        if (num >= 100) {
+            wallet.dollar = wallet.dollar + 1;
+            num = num - 100;
+        }
+
         if (num >= 25) {
-            quarter = quarter + 1;
+            wallet.quarter = wallet.quarter + 1;
             num = num - 25;
         }
+
         else if (num >= 10) {
-            dime++;
+            wallet.dime++;
             num = num - 10;
         }
+
         else if (num >= 5) {
-            nickel++;
+            wallet.nickel++;
             num = num - 5;
         }
+
         else {
-            penny++;
+            wallet.penny++;
             num = num - 1;
 
         }
 
     }
 
-    console.log("quarters:",quarter);
-    console.log("dimes:", dime);
-    console.log("nickels:", nickel);
-    console.log("pennies:",penny);
+    if (wallet.dollar == 0) {
+        delete(wallet.dollar);
+    }
+
+    if (wallet.quarter == 0) {
+        delete(wallet.quarter);
+    }
+
+    if (wallet.dime == 0) {
+        delete(wallet.dime);
+    }
+
+    if (wallet.nickel == 0) {
+        delete(wallet.nickel);
+    }
+
+    if (wallet.penny == 0) {
+        delete(wallet.penny);
+    }
+
+    console.log(wallet);
+
 }
 
-make_change(68);
+make_change(465);

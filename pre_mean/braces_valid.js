@@ -1,29 +1,26 @@
-function bracesValid(arr) {
+function bracesValid(str) {
 
-    var count = 0
 
-    for (let i=0; i < arr.length; i++){
+    var matches = { '(': ')', '{': '}', '[': ']' };
+    var arr = [];
+    var currentChar;
 
-        if (arr[i] == "(" || arr[i] == "[" || arr[i] == "{"){
-            count++;
+    for (var i = 0; i < str.length; i++) {
+
+        currentChar = str[i];
+
+        if (matches[currentChar]) {
+            arr.push(currentChar);
+        } 
+
+        else { 
+            if (currentChar !== matches[arr.pop()]) {
+                return false;
+            }
         }
-
-        else if (arr[i] == ")" || arr[i] == "]" || arr[i] == "}") {
-            count--;
-        }
-        
-        if (count < 0) {
-            return false;
-        }
-
     }
 
-    if (count > 0) {
-        return false;
-    }
-
-    return true;
-
+    return arr.length === 0; 
 }
 
 console.log(bracesValid('(){}[]'))
@@ -31,3 +28,5 @@ console.log(bracesValid('(){}[]'))
 console.log(bracesValid('({[]})'))
 
 console.log(bracesValid('([]})'))
+
+console.log(bracesValid('{(})'))
