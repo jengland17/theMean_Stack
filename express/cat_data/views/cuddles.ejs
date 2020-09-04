@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuddles</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+
+
+<body>
+
+    <div class="d-flex flex-column align-items-center mt-5">
+
+        <h1>All About <%= kittens.name %></h1>
+
+        <img class="rounded-circle" src="<%= kittens.pic %>" alt="cat">
+
+        <p class="mt-5 bg-info w-25 rounded text-center">Name: <%= kittens.name %> </p>
+
+        <p class="bg-info w-25 rounded text-center">Age: <%= kittens.age %> </p>
+
+        <div class=" d-flex flex-column bg-primary w-25 rounded text-center">
+
+            Fav Foods: <ul class="text-center mx-auto">
+                <% for (let i in kittens.food) {%>
+                <li><%= kittens.food[i] %> </li>
+                <% } %>
+            </ul>
+
+        </div>
+
+    </div>
+
+</body>
+
+
+</html>
