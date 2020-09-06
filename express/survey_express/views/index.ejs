@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Some Survey</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+
+
+<body class="d-flex justify-content-center">
+
+    <div class="mt-5" style="width: 250px;">
+
+        <form action="/form" method="post">
+
+            <div class="form-group">
+                <label for="name"> Your Name: </label>
+                <input class="form-control" type="text" name="name" id="">
+            </div>
+
+            <div class="form-group">
+                <label for="dojos"> Dojo Location: </label>
+                <select class="form-control" name="dojos" id="">
+                    <option value="Dallas">Dallas</option>
+                    <option value="Chicago">Chicago</option>
+                    <option value="Seattle">Seattle</option>
+                    <option value="Tulsa">Tulsa</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="language"> Favorite Language </label>
+                <select class="form-control" name="language" id="">
+                    <option value="Python">Python</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="C#">C#</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="comment">Comment (optioanl):</label>
+                <br>
+                <textarea class="form-control" name="comment" id="" cols="10" rows="10"></textarea>
+            </div>
+            
+            <div class="form-group text-right">
+                <button class="bg-primary">Submit</button>
+            </div>
+
+        </form>
+
+    </div>
+
+</body>
+
+
+</html>
