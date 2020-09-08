@@ -31,11 +31,8 @@ app.get('/results', (req, res) => {
 })
 
 app.get('/reset', (req, res) => {
-
     req.session.destroy();
-
     res.redirect('/')
-
 })
 
 
