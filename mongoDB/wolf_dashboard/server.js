@@ -74,9 +74,42 @@ app.get("/wolves/:_id", (req,res) => {
 
 })
 
+app.get("/wolves/edit/:_id", (req, res) => {
 
+    Wolf.findOne({_id: req.params._id})
 
+        .then(wolves => {
+            res.render("editWolf", {wolves:wolves});
+        })
+        .catch(err => res.json(err));
+})
 
+app.post("/wolves/:_id", (req,res) => {
+
+    Wolf.findOne({_id: req.params._id})
+
+        .then(wolves => {
+            wolves.name = req.body.name
+            wolves.location = req.body.location
+            wolves.fact = req.body.fact
+            return wolves.save();
+        })
+        .then(wolves => {
+            console.log(wolves)
+            res.redirect("/")
+        })
+        .catch(err => res.json(err));
+})
+
+app.post("/wolves/destroy/:_id", (req,res) => {
+
+    Wolf.findOneAndRemove({_id: req.params._id})
+    .then(wolves => {
+        res.redirect("/")
+    })
+    .catch(err => res.json(err))
+
+})
 
 
 

@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>All About Wolves</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
@@ -18,12 +18,14 @@
 
         <h1>The Wolves</h1>
 
-        <table class="table table-hover table-bordered mt-5 mb-5" style="width: 1300px; margin: 0 auto;">
+        <table class="table table-hover table-bordered mt-5 mb-5" style="width: 1500px; margin: 0 auto;">
             <thead>
                 <tr>
                     <th scope="col">Wolf Name</th>
                     <th scope="col">Location</th>
                     <th scope="col">Fact</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +34,12 @@
                     <th scope="row"><a href="/wolves/<%= wolves[wolf].id %>"><%= wolves[wolf].name %></a></th>
                     <td><%= wolves[wolf].location %></td>
                     <td><%= wolves[wolf].fact %></td>
+                    <td><a href="/wolves/edit/<%= wolves[wolf].id %>">Edit</a></td>
+                    <td>
+                        <form action="/wolves/destroy/<%= wolves[wolf].id %>" method="post">
+                            <button class="btn-danger rounded">Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 <% } %>
             </tbody>

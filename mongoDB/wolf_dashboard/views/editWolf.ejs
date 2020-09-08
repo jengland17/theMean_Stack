@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit the Wolf</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+</head>
+
+
+<body class="d-flex justify-content-center">
+
+    <div class="mt-5" style="width: 600px;">
+
+        <h1 class="text-center">Edit <%= wolves.name %></h1>
+
+        <form class="mt-5" action="/wolves/<%= wolves.id %>" method="post">
+
+            <div class="form-group">
+                <label for="wolf">Wolf Name:</label>
+                <input class="form-control" type="text" name="name" value="<%= wolves.name %>">
+            </div>
+
+            <div class="form-group">
+                <label for="color">Location:</label>
+                <input class="form-control" type="text" name="location" value="<%= wolves.location %>">
+            </div>
+
+            <div class="form-group">
+                <label for="fact">Fact about Wolf:</label>
+                <textarea class="form-control" name="fact" id="" cols="30" rows="10"><%= wolves.fact %></textarea>
+            </div>
+
+            <div class="text-center">
+                <button class="bg-success text-white text-right rounded">Update Wolf</button>
+            </div>
+
+        </form>
+
+        <a href="/">Go back</a>
+
+    </div>
+
+</body>
+
+
+</html>
