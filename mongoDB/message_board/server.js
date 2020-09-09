@@ -7,18 +7,18 @@ const app = express();
 
 //Database setup and Schemas
 
-mongoose.connect('mongodb://localhost/message_dashboard', {useNewUrlParser: true});
+mongoose.connect('mongodb://localhost/message_dashboard', { useNewUrlParser: true });
 
 const CommentSchema = new mongoose.Schema({
-    name: {type: String, required: true, minlength: [3, "Name needs to be at least 3 characters"]},
-    comment: {type: String, required: true, minlength: [5, "Comment should be at least 5 characters"]}
-}, {timestamps: true})
+    name: { type: String, required: [true, "Need a name to post"], minlength: [3, "Name needs to be at least 3 characters"] },
+    comment: { type: String, required: [true, "Please add a comment for all to see"], minlength: [5, "Comment should be at least 5 characters"] }
+}, { timestamps: true })
 
 const MessageSchema = new mongoose.Schema({
-    name: {type: String, required: true, minlength: [3, "Name needs to be at least 3 characters"]},
-    message: {type: String, required: true, minlength: [10, "Message should be at least 10 characters"]},
+    name: { type: String, required: [true, "Need a name to post"], minlength: [3, "Name needs to be at least 3 characters"] },
+    message: { type: String, required: [true, "Please add a message for all to see"], minlength: [10, "Message should be at least 10 characters"] },
     comments: [CommentSchema]
-}, {timestamps: true})
+}, { timestamps: true })
 
 const Comment = mongoose.model('Comment', CommentSchema);
 const Message = mongoose.model('Message', MessageSchema);
@@ -29,52 +29,64 @@ app.use(session({
     secret: 'fakebook',
     resave: false,
     saveUninitialized: true,
-    cookie: {maxAge: 60000}
+    cookie: { maxAge: 60000 }
 }))
 
 app.use(express.static(__dirname + "/static"));
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 
 // Routes 
 
-app.get("/", (req,res) => {
-    res.render("index")
-})
+app.get("/", (req, res) => {
 
-app.post("/message", (req,res) => {
-    
-    newmessage = new Message()
-
-    newmessage.name = req.body.name
-    newmessage.message = req.body.message
-    newmessage.save()
-    .then(data => {
-        res.redirect("/")
-    })
-    .catch(err => {
-        console.log('err', err)
-    })
-    
-})
-
-app.post("/comment", (req,res) => {
-
-    newcomment = new Comment()
-
-    newcomment.name = req.body.name
-    newcomment.comment = req.body.comment
-    newcomment.save()
-    .then(data => {
-        res.redirect("/")
-    })
-    .catch(err => {
-        console.log('err', err)
-    })
+    Message.find()
+        .then(msg => {
+            res.render('index', { msg: msg })
+        })
+        .catch(err => res.redirect("/"))
 
 })
 
+app.post("/message", (req, res) => {
 
-app.listen(8000, () => {console.log("listening on port 8000")})
+    msg = new Message()
+
+    msg.name = req.body.name
+    msg.message = req.body.message  // creates a new message
+    msg.comments = []
+    msg.save()
+        .then(newmsg => {
+            res.redirect('/')
+        })
+        .catch(err => {
+            console.log('err', err)
+        })
+
+})
+
+app.post("/comment/:_id", (req, res) => {
+
+    Message.findOne({ _id: req.params._id })
+        .then(message => {
+            comment = new Comment()
+            comment.name = req.body.name
+            comment.comment = req.body.comment //creates a new comment but i need to attach it to the messages some way
+            comment.save()
+                .then(comment => {
+                    message.comments.push(comment)
+                    message.save()
+                        .then(data => {
+                            res.redirect("/")
+                        })
+                        .catch(err => res.redirect("/"))
+                })
+                .catch(err => res.redirect("/"))
+        })
+        .catch(err => res.redirect("/"))
+})
+
+
+app.listen(8000, () => { console.log("listening on port 8000") })
