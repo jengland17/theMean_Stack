@@ -102,7 +102,7 @@ console.log(math(4,5))
 
 class Elephant {
     constructor(public age: number){}
-    birthday = function(){
+    birthday = () => {
         this.age++;
     }
 }
