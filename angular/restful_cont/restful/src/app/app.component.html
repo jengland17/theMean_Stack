@@ -1,0 +1,13 @@
+
+<h1>Restful Tasks API</h1>
+
+<h1>All the Tasks:</h1>
+
+<p *ngFor="let task of tasks">{{task.title}} -- {{task.description}}</p>
+
+<h1>The Third Task:</h1>
+
+<p>{{tasks[2].title}} -- {{tasks[2].description}}</p>
+
+
+<router-outlet></router-outlet>
