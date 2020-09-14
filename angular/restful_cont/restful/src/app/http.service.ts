@@ -7,8 +7,8 @@ import { HttpClient } from "@angular/common/http";
 export class HttpService {
 
   constructor(private _http: HttpClient) {
-    this.getTasks();
-    this.showOne();
+    // this.getTasks();
+    // this.showOne();
   }
 
   getTasks() {
@@ -18,8 +18,8 @@ export class HttpService {
     // tempObservable.subscribe((data) => console.log("Got our tasks!", data));
   }
 
-  showOne() {
-    return this._http.get("/tasks/:_id");
+  showOne(id) {
+    return this._http.get(`/tasks/${id}`);
     // task.subscribe((data) => console.log("One task", data))
   }
 

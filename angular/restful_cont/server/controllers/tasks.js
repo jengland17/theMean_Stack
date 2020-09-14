@@ -6,7 +6,7 @@ module.exports = {
     index: (req, res) => {
         Task.find()
             .then(task => {
-                res.json(task)
+                res.json({'task': task})
             })
             .catch(err => {
                 res.json(err)
