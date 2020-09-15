@@ -11,6 +11,7 @@ export class AppComponent implements OnInit {
   title = 'restful';
   tasks: any=[];
   task: any=[];
+  selectedTask;
   
 
   constructor(private _httpService: HttpService) {}
@@ -32,6 +33,7 @@ export class AppComponent implements OnInit {
     observable.subscribe(data => {
       console.log(data)
       this.task = data
+      this.selectedTask = this.task
     })
   }
 

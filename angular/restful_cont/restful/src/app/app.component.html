@@ -1,15 +1,15 @@
+<div class="wrapper">
 
-<h1>Restful Tasks API</h1>
+    <h1>Restful Tasks API</h1>
 
+    <button (click)="getTasksFromService()"> Get all Tasks</button>
 
-<button (click)="getTasksFromService()"> Get all Tasks</button>
+    <p *ngFor="let task of tasks">{{task.title}} -- {{task.description}} <button
+            (click)='showInfo(task._id)'>Show</button></p>
 
-<p *ngFor="let task of tasks">{{task.title}} -- {{task.description}} <button (click)='showInfo(task._id)'>Show</button></p>
+    <app-task *ngIf="selectedTask" [showInfo]="selectedTask"></app-task>
 
-<p> {{ task.title }} </p>
-<p> {{task.description}} </p>
-
-
+</div>
 
 
 <router-outlet></router-outlet>
