@@ -1,0 +1,50 @@
+<div class="wrapper">
+
+  <h1>Restful Tasks API</h1>
+
+  <div class="form">
+
+    <form (submit)="onSubmit()">
+
+      <p>Title: <input type="text" name="title" [(ngModel)]="newTask.title" /></p>
+      <p>Description: <input type="text" name="description" [(ngModel)]="newTask.description" /></p>
+      <input type="submit" value="Create Task" />
+
+    </form>
+
+  </div>
+
+  <button style="margin-top: 15px;" (click)="getTasksFromService()"> Get all Tasks</button>
+
+  <div class="allTasks">
+
+    <p *ngFor="let task of tasks">{{task.title}} -- {{task.description}} <button
+        (click)='showInfo(task._id)'>Show</button> | <button (click)="editForm(task._id)">Edit</button> | <button (click)="onDelete(task._id)">Delete</button></p>
+
+  </div>
+
+  <div *ngIf="edit">
+
+    <h1>Edit Task</h1>
+  
+    <form (submit)="onEdit(task._id)">
+      <p>Title: <input type="text" name="task.title" [(ngModel)]="task.title" /></p>
+      <p>Description: <input type="text" name="task.description" [(ngModel)]="task.description" /></p>
+      <input type="submit" value="Update" />
+    </form>
+
+  </div>
+
+
+  <div class="bottom" *ngIf="show">
+
+    <p> {{ task.title }} </p>
+    <p> {{task.description}} </p>
+
+  </div>
+
+</div>
+
+
+
+<router-outlet></router-outlet>
