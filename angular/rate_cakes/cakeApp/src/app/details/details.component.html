@@ -1,0 +1,13 @@
+<div class="wrapper">
+
+    <h4>Baked by {{cakeToShow.name}}</h4>
+
+    <h5>Average Rating {{avgRating}} stars</h5>
+
+    <div *ngFor="let review of cakeToShow.comments">
+        <p>{{review.comment}} -- {{review.rating}} stars</p>
+    </div>
+
+    <p><img src="{{cakeToShow.image}}" alt="cake"></p>
+
+</div>

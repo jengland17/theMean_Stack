@@ -1,0 +1,16 @@
+.wrapper {
+    display: flex;
+    justify-content: space-around;
+}
+.scroll {
+    overflow: auto;
+    height: 300px;
+}
+
+h3 {
+    border-bottom: 2px solid lightblue;
+}
+
+img {
+    width: 100px;
+}

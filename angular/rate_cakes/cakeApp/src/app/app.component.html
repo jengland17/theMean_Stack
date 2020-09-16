@@ -1,0 +1,41 @@
+<div class="wrapper">
+
+  <div class="left">
+
+    <h1>Hello, Ready for Rate my cakes!</h1>
+
+    <h3>Submit a cake to be rated</h3>
+
+    <form (submit)="onSubmit()">
+      <p>Name: <input type="text" name="name" [(ngModel)]="newCake.name"></p>
+      <p>Img URL: <input type="text" name="image" [(ngModel)]="newCake.image"></p>
+      <input type="submit" value="Submit">
+    </form>
+
+  </div>
+
+  <div class="right">
+
+    <h1>The Cakes so far</h1>
+
+    <div class="scroll">
+
+      <div *ngFor="let cake of cakes">
+
+        <h4>{{cake.name}}</h4>
+        <p><img src="{{cake.image}}" alt="cake" (click)="showTheCake(cake._id)"></p>
+        <app-rate-form *ngIf="cake" [cake]="cake"></app-rate-form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="info">
+  <app-details *ngIf="selectedCake" [cakeToShow]="selectedCake" [avgRating]="avg"></app-details>
+</div>
+
+<router-outlet></router-outlet>
