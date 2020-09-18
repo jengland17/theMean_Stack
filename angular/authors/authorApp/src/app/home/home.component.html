@@ -1,0 +1,27 @@
+<div class="top">
+
+    <a [routerLink]="['/new']">Add an Author</a>
+
+</div>
+
+<div class="display">
+
+    <p>We have these authors: </p>
+
+    <div *ngFor="let author of authors">
+    <table class="table table-striped table-hover table-bordered">
+            <thead>
+                <th scope="col">Author</th>
+                <th scope="col">Actions Available</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{author.name}}</td>
+                    <td><a class="btn btn-warning" href="" [routerLink]="['/edit', author._id]" >Edit</a> <a
+                            class="btn btn-danger ml-3" href="" (click)="removeAuthor(author._id)">Delete</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
