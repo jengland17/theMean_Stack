@@ -35,6 +35,8 @@ class min_heap  {
 
         }
 
+        return arr
+        
     }
 
     // after finding the min value we need to remove it and store in a temp

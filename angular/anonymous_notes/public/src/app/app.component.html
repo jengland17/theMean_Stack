@@ -1,0 +1,44 @@
+<div class="wrapper ml-5 mt-5">
+
+  <div class="top">
+
+    <h1>Anonymous Notes</h1>
+
+  </div>
+
+  <div class="form">
+
+    <form (submit)="addNote()">
+
+      <p><input type="text" name="note" [(ngModel)]="newnote.note"> <input class=" ml-5 btn btn-success" type="submit" value="Add Note"></p>
+
+    </form>
+
+  </div>
+
+
+  <div class="bottom overflow-auto ">
+
+    <div *ngFor="let note of notes">
+
+      <div class="card w-75">
+        <div class="card-body">
+          {{note.note}} -- Noted on {{note.createdAt | date: 'medium'}}
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+
+</div>
+
+
+
+
+
+
+<router-outlet></router-outlet>
